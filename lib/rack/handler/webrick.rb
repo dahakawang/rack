@@ -8,7 +8,7 @@ module Rack
       def self.run(app, options={})
         options[:BindAddress] = options.delete(:Host) if options[:Host]
         options[:Port] ||= 8080
-        options[:OutputBufferSize] = 5
+        options[:OutputBufferSize] = 1
         @server = ::WEBrick::HTTPServer.new(options)
         @server.mount "/", Rack::Handler::WEBrick, app
         yield @server  if block_given?
